@@ -1,0 +1,31 @@
+﻿<Window x:Class="UserPaymentsDesktopApp.NavigationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserPaymentsDesktopApp"
+        mc:Ignorable="d"
+        Title="{Binding ElementName=MainFrame, Path=Content.Title, StringFormat={}UsersPayments - {0}, FallbackValue=UsersPayments - пустая страница}"
+        Height="450"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="800"
+        MinHeight="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource SecondaryColor}">
+            <Label HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{Binding ElementName=MainFrame, Path=Content.Title}"
+                   Style="{StaticResource HeaderLabel}"/>
+        </Grid>
+        <Frame x:Name="MainFrame"
+               Grid.Row="1"/>
+        <Grid Grid.Row="2" 
+              Background="{StaticResource SecondaryColor}"/>
+    </Grid>
+</Window>
