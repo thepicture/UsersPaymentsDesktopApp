@@ -20,13 +20,18 @@
                     Width="30" />
             <Label Content="С"
                    Width="auto" />
-            <DatePicker />
+            <DatePicker Name="FromDate"
+                        SelectedDateChanged="ReloadPaymentsAsync" />
             <Label Content="по"
                    Width="auto" />
-            <DatePicker />
+            <DatePicker  Name="ToDate"
+                         SelectedDateChanged="ReloadPaymentsAsync" />
             <Label Content="Категории"
                    Width="auto" />
-            <ComboBox />
+            <ComboBox Name="ComboCategories"
+                      DisplayMemberPath="Name"
+                      SelectedIndex="0"
+                      SelectionChanged="ReloadPaymentsAsync" />
             <Button Content="Выбрать" />
             <Button Content="Очистить" />
         </StackPanel>
