@@ -47,6 +47,8 @@ namespace UserPaymentsDesktopApp.Views.Pages
             {
                 if (currentUser.Password == Password.Password)
                 {
+                    (App.Current as App).CurrentUser = currentUser;
+                    _ = NavigationService.Navigate(new PaymentsPage());
                     MessageBoxService.Inform("Вы успешно авторизованы, " +
                         $"{currentUser.FullName}");
                 }

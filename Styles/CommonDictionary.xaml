@@ -4,7 +4,7 @@
     <Brush x:Key="SecondaryColor">#9999FF</Brush>
     <Style TargetType="FrameworkElement">
         <Setter Property="Width"
-                Value="200" />
+                Value="120" />
         <Setter Property="Margin"
                 Value="5" />
     </Style>
@@ -34,6 +34,11 @@
     </Style>
 
     <Style TargetType="PasswordBox"
+           BasedOn="{StaticResource {x:Type FrameworkElement}}">
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+    </Style>
+    <Style TargetType="DatePicker"
            BasedOn="{StaticResource {x:Type FrameworkElement}}">
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />

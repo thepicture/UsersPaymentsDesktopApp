@@ -8,24 +8,23 @@
       d:DesignHeight="450"
       d:DesignWidth="800"
       Title="Страница авторизации">
-
     <StackPanel HorizontalAlignment="Center"
                 VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal">
             <Label Content="Пользователь" />
             <ComboBox Name="ComboUsers"
-                      SelectedIndex="0" 
-                      DisplayMemberPath="FullName"/>
+                      SelectedIndex="0"
+                      DisplayMemberPath="FullName" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Пароль" />
             <PasswordBox x:Name="Password" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Авторизоваться" 
-                    Click="Authorize"/>
+            <Button Content="Авторизоваться"
+                    Click="Authorize" />
             <Button Content="Выйти"
-                    Click="Exit"/>
+                    Click="Exit" />
         </StackPanel>
     </StackPanel>
 </Page>
