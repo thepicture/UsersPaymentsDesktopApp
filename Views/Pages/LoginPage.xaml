@@ -22,8 +22,10 @@
             <PasswordBox x:Name="Password" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Авторизоваться" />
-            <Button Content="Выйти" />
+            <Button Content="Авторизоваться" 
+                    Click="Authorize"/>
+            <Button Content="Выйти"
+                    Click="Exit"/>
         </StackPanel>
     </StackPanel>
 </Page>

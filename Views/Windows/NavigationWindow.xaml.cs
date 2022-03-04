@@ -11,7 +11,7 @@ namespace UserPaymentsDesktopApp
         public NavigationWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
+            _ = MainFrame.Navigate(new LoginPage());
         }
     }
 }
