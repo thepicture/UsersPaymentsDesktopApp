@@ -9,11 +9,16 @@
                 Value="5" />
     </Style>
     <Style TargetType="Label"
-           BasedOn="{StaticResource {x:Type FrameworkElement}}" />
+           BasedOn="{StaticResource {x:Type FrameworkElement}}">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Right" />
+    </Style>
     <Style TargetType="Label"
            x:Key="HeaderLabel">
         <Setter Property="FontSize"
                 Value="20" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
     </Style>
     <Style TargetType="Button"
            BasedOn="{StaticResource {x:Type FrameworkElement}}">
@@ -29,8 +34,8 @@
     </Style>
 
     <Style TargetType="PasswordBox"
-           BasedOn="{StaticResource {x:Type FrameworkElement}}" />
-
-
-
+           BasedOn="{StaticResource {x:Type FrameworkElement}}">
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+    </Style>
 </ResourceDictionary>
