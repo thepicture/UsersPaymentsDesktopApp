@@ -14,13 +14,8 @@
         <StackPanel Orientation="Horizontal">
             <Label Content="Пользователь" />
             <ComboBox Name="ComboUsers"
-                      SelectedIndex="0">
-                <ComboBox.Items>
-                    <ComboBoxItem>Тестовый пользователь 1</ComboBoxItem>
-                    <ComboBoxItem>Тестовый пользователь 2</ComboBoxItem>
-                    <ComboBoxItem>Тестовый пользователь 3</ComboBoxItem>
-                </ComboBox.Items>
-            </ComboBox>
+                      SelectedIndex="0" 
+                      DisplayMemberPath="FullName"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Пароль" />
