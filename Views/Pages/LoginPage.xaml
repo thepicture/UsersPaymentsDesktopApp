@@ -14,7 +14,7 @@
             <Label Content="Пользователь" />
             <ComboBox Name="ComboUsers"
                       SelectedIndex="0"
-                      DisplayMemberPath="FullName" />
+                      DisplayMemberPath="Login" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Пароль" />
