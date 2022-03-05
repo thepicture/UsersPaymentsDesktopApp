@@ -96,7 +96,7 @@ namespace UserPaymentsDesktopApp.Views.Pages
         /// <summary>
         /// Добавляет платёж.
         /// </summary>
-        private void OnAddPayment(object sender, RoutedEventArgs e)
+        private async void OnAddPayment(object sender, RoutedEventArgs e)
         {
             AddPaymentWindow addPaymentWindow = new AddPaymentWindow
             {
@@ -104,7 +104,7 @@ namespace UserPaymentsDesktopApp.Views.Pages
             };
             if (addPaymentWindow.ShowDialog() != null)
             {
-
+                await LoadPaymentsAsync();
             }
         }
     }
