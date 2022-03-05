@@ -16,26 +16,35 @@
         <StackPanel Orientation="Horizontal">
             <Label Content="Категория" />
             <ComboBox Name="ComboCategories"
-                      DisplayMemberPath="Name"
-                      SelectedIndex="0"/>
+                      SelectedItem="{Binding CurrentType, UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="Name" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Назначение платежа" />
-            <TextBox />
+            <TextBox Text="{Binding CurrentPayment.Name, UpdateSourceTrigger=PropertyChanged}" 
+                     Name="PaymentName"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Количество" />
-            <TextBox />
+            <TextBox Text="{Binding CurrentPayment.Count, UpdateSourceTrigger=PropertyChanged}"
+                     Name="PaymentCount"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Цена" />
-            <TextBox />
+            <TextBox Text="{Binding CurrentPayment.Price, UpdateSourceTrigger=PropertyChanged}"
+                     Width="100" 
+                     Name="Price"/>
+            <Label Content="руб."
+                   Width="auto"></Label>
         </StackPanel>
         <CheckBox Content="Оплачено"
+                  IsChecked="{Binding CurrentPayment.IsPayed, UpdateSourceTrigger=PropertyChanged}"
                   HorizontalAlignment="Center" />
         <StackPanel Orientation="Horizontal">
-            <Button Content="Добавить"/>
-            <Button Content="Отменить"/>
+            <Button Content="Добавить" 
+                    Click="SavePaymentAsync"/>
+            <Button Content="Отменить"
+                    Click="Cancel"/>
         </StackPanel>
     </StackPanel>
 </Window>

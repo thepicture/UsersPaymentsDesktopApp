@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bd5665a587ba4c4790447d1d9e0f3adb" Name="Diagram1">
-        <EntityTypeShape EntityType="UserPaymentsBaseModel.PaymentOfUser" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserPaymentsBaseModel.PaymentType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="UserPaymentsBaseModel.User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="UserPaymentsBaseModel.FK_PaymentOfUser_PaymentType" ManuallyRouted="false" />
-        <AssociationConnector Association="UserPaymentsBaseModel.FK_PaymentOfUser_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="UserPaymentsBaseModel.PaymentOfUser" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="UserPaymentsBaseModel.PaymentType" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="UserPaymentsBaseModel.User" Width="1.5" PointX="0.75" PointY="5.375" />
+        <AssociationConnector Association="UserPaymentsBaseModel.FK_PaymentOfUser_PaymentType" />
+        <AssociationConnector Association="UserPaymentsBaseModel.FK_PaymentOfUser_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

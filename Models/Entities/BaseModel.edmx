@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UserPaymentsBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="UserPaymentsBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PaymentOfUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentDate" Type="datetime" Nullable="false" />
           <Property Name="PaymentTypeId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -72,48 +72,60 @@
             <End Role="PaymentOfUser" EntitySet="PaymentOfUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UserPaymentsBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UserPaymentsBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PaymentOfUser" EntityType="UserPaymentsBaseModel.PaymentOfUser" />
+          <EntitySet Name="PaymentType" EntityType="UserPaymentsBaseModel.PaymentType" />
+          <EntitySet Name="User" EntityType="UserPaymentsBaseModel.User" />
+          <AssociationSet Name="FK_PaymentOfUser_PaymentType" Association="UserPaymentsBaseModel.FK_PaymentOfUser_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="PaymentOfUser" EntitySet="PaymentOfUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentOfUser_User" Association="UserPaymentsBaseModel.FK_PaymentOfUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PaymentOfUser" EntitySet="PaymentOfUser" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="PaymentOfUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="IsPayed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="PaymentType" Relationship="Self.FK_PaymentOfUser_PaymentType" FromRole="PaymentOfUser" ToRole="PaymentType" />
-          <NavigationProperty Name="User" Relationship="Self.FK_PaymentOfUser_User" FromRole="PaymentOfUser" ToRole="User" />
+          <NavigationProperty Name="PaymentType" Relationship="UserPaymentsBaseModel.FK_PaymentOfUser_PaymentType" FromRole="PaymentOfUser" ToRole="PaymentType" />
+          <NavigationProperty Name="User" Relationship="UserPaymentsBaseModel.FK_PaymentOfUser_User" FromRole="PaymentOfUser" ToRole="User" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PaymentOfUser" Relationship="Self.FK_PaymentOfUser_PaymentType" FromRole="PaymentType" ToRole="PaymentOfUser" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentOfUser" Relationship="UserPaymentsBaseModel.FK_PaymentOfUser_PaymentType" FromRole="PaymentType" ToRole="PaymentOfUser" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PinCode" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PaymentOfUser" Relationship="Self.FK_PaymentOfUser_User" FromRole="User" ToRole="PaymentOfUser" />
+          <NavigationProperty Name="PaymentOfUser" Relationship="UserPaymentsBaseModel.FK_PaymentOfUser_User" FromRole="User" ToRole="PaymentOfUser" />
         </EntityType>
         <Association Name="FK_PaymentOfUser_PaymentType">
-          <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
-          <End Role="PaymentOfUser" Type="Self.PaymentOfUser" Multiplicity="*" />
+          <End Type="UserPaymentsBaseModel.PaymentType" Role="PaymentType" Multiplicity="1" />
+          <End Type="UserPaymentsBaseModel.PaymentOfUser" Role="PaymentOfUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentType">
               <PropertyRef Name="Id" />
@@ -124,8 +136,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaymentOfUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="PaymentOfUser" Type="Self.PaymentOfUser" Multiplicity="*" />
+          <End Type="UserPaymentsBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="UserPaymentsBaseModel.PaymentOfUser" Role="PaymentOfUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -135,19 +147,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="UserPaymentsBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="PaymentOfUser" EntityType="Self.PaymentOfUser" />
-          <EntitySet Name="PaymentType" EntityType="Self.PaymentType" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_PaymentOfUser_PaymentType" Association="Self.FK_PaymentOfUser_PaymentType">
-            <End Role="PaymentType" EntitySet="PaymentType" />
-            <End Role="PaymentOfUser" EntitySet="PaymentOfUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentOfUser_User" Association="Self.FK_PaymentOfUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="PaymentOfUser" EntitySet="PaymentOfUser" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -157,33 +156,33 @@
           <EntitySetMapping Name="PaymentOfUser">
             <EntityTypeMapping TypeName="UserPaymentsBaseModel.PaymentOfUser">
               <MappingFragment StoreEntitySet="PaymentOfUser">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsPayed" ColumnName="IsPayed" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentType">
             <EntityTypeMapping TypeName="UserPaymentsBaseModel.PaymentType">
               <MappingFragment StoreEntitySet="PaymentType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="UserPaymentsBaseModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
