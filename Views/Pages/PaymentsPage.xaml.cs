@@ -123,6 +123,10 @@ namespace UserPaymentsDesktopApp.Views.Pages
                 return;
             }
             PaymentOfUser payment = PaymentsGrid.SelectedItem as PaymentOfUser;
+            if (!MessageBoxService.Ask($"Удалить платёж {payment.Name}?"))
+            {
+                return;
+            }
             try
             {
                 await Task.Run(() =>
