@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="{Binding ElementName=MainFrame, Path=Content.Title, StringFormat={}UsersPayments - {0}, FallbackValue=UsersPayments - пустая страница}"
         Height="450"
-        Width="900"
+        Width="1000"
         WindowStartupLocation="CenterScreen"
-        MinWidth="900"
+        MinWidth="1000"
         MinHeight="450">
     <Grid>
         <Grid.RowDefinitions>

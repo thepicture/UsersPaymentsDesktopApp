@@ -2,8 +2,10 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using UserPaymentsDesktopApp.Models.Entities;
+using UserPaymentsDesktopApp.Views.Windows;
 
 namespace UserPaymentsDesktopApp.Views.Pages
 {
@@ -82,10 +84,28 @@ namespace UserPaymentsDesktopApp.Views.Pages
             PaymentsGrid.ItemsSource = payments;
         }
 
+        /// <summary>
+        /// Перезагружает платежи.
+        /// </summary>
         private async void ReloadPaymentsAsync(object sender,
                                          SelectionChangedEventArgs e)
         {
             await LoadPaymentsAsync();
+        }
+
+        /// <summary>
+        /// Добавляет платёж.
+        /// </summary>
+        private void OnAddPayment(object sender, RoutedEventArgs e)
+        {
+            AddPaymentWindow addPaymentWindow = new AddPaymentWindow
+            {
+                Owner = App.Current.MainWindow
+            };
+            if (addPaymentWindow.ShowDialog() != null)
+            {
+
+            }
         }
     }
 }
