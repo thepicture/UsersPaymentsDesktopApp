@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:UserPaymentsDesktopApp.Views.Pages"
       mc:Ignorable="d"
       d:DesignHeight="450"
-      d:DesignWidth="900">
+      d:DesignWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -15,10 +15,11 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button Content="+"
-                    Width="30" 
+                    Width="30"
                     Click="OnAddPayment" />
             <Button Content="-"
-                    Width="30" />
+                    Width="30" 
+                    Click="RemovePayment"/>
             <Label Content="С"
                    Width="auto" />
             <DatePicker Name="FromDate"

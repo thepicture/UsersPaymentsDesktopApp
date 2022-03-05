@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using UserPaymentsDesktopApp.Models.Entities;
+using UserPaymentsDesktopApp.Services;
 using UserPaymentsDesktopApp.Views.Windows;
 
 namespace UserPaymentsDesktopApp.Views.Pages
@@ -106,6 +109,41 @@ namespace UserPaymentsDesktopApp.Views.Pages
             {
                 await LoadPaymentsAsync();
             }
+        }
+
+        /// <summary>
+        /// Удаляет платёж.
+        /// </summary>
+        private async void RemovePayment(object sender, RoutedEventArgs e)
+        {
+            if (PaymentsGrid.SelectedItem is null)
+            {
+                MessageBoxService.Warn("В таблице не выбран платёж " +
+                    "для удаления. Выберите платёж");
+                return;
+            }
+            PaymentOfUser payment = PaymentsGrid.SelectedItem as PaymentOfUser;
+            try
+            {
+                await Task.Run(() =>
+                {
+                    using (UserPaymentsBaseEntities context =
+                    new UserPaymentsBaseEntities())
+                    {
+                        context.Entry(payment).State = EntityState.Deleted;
+                        _ = context.SaveChanges();
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+                MessageBoxService.InformError("Проверьте подключение к базе данных. " +
+                    "Платёж не удалён");
+                return;
+            }
+            MessageBoxService.Inform("Платёж успешно удалён");
+            await LoadPaymentsAsync();
         }
     }
 }
