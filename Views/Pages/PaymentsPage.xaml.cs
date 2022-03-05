@@ -145,5 +145,13 @@ namespace UserPaymentsDesktopApp.Views.Pages
             MessageBoxService.Inform("Платёж успешно удалён");
             await LoadPaymentsAsync();
         }
+
+        private async void ClearFiltersAsync(object sender, RoutedEventArgs e)
+        {
+            FromDate.SelectedDate = null;
+            ToDate.SelectedDate = null;
+            ComboCategories.SelectedIndex = 0;
+            await LoadPaymentsAsync();
+        }
     }
 }

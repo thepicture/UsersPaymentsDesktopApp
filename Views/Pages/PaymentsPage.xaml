@@ -35,7 +35,8 @@
                       SelectedIndex="0"
                       SelectionChanged="ReloadPaymentsAsync" />
             <Button Content="Выбрать" />
-            <Button Content="Очистить" />
+            <Button Content="Очистить"
+                    Click="ClearFiltersAsync"/>
         </StackPanel>
         <DataGrid AutoGenerateColumns="False"
                   CanUserAddRows="False"
